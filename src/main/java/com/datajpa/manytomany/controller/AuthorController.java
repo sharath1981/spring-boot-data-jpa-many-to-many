@@ -26,7 +26,7 @@ public class AuthorController {
 	}
 	
 	@PostMapping
-	public Author postMethodName(@RequestBody Author author) {
+	public Author save(@RequestBody Author author) {
 		return authorRepository.save(author);
 	}
 }
