@@ -1,7 +1,7 @@
 package com.datajpa.manytomany.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,9 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Author {
 
@@ -26,5 +28,5 @@ public class Author {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
-	private List<Book> books = new ArrayList<>();
+	private Set<Book> books = new HashSet<>();
 }
