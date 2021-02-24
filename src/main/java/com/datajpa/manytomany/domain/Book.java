@@ -27,9 +27,9 @@ public class Book {
 
 	private String title;
 
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
+	@JsonIgnore // To avoid recursion while calling from the UI client
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "books") // Use mappedBy for bidirectional mapping, other wise use @JoinTable
+	//@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors = new HashSet<>();
 
 }
